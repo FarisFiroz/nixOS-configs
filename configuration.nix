@@ -28,10 +28,11 @@
   # Enable the X11 windowing system.
    services.xserver.enable = true;
 
-  # Enable Pantheon DE
+  # Enable DE/WM
   services.xserver.desktopManager.pantheon.enable = true;
   services.pantheon.apps.enable = false;
-  
+  services.xserver.windowManager.awesome.enable = true;
+
   # Configure keymap in X11
    services.xserver.layout = "us";
    #services.xserver.xkbOptions = {
@@ -44,6 +45,11 @@
    sound.enable = true;
    hardware.pulseaudio.enable = true;
 
+  # Make users immutable
+  users.mutableUsers = false;
+  
+  # Set root password
+  users.users.root.initialPassword = "AdminPass";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
    users.users.shado = {
@@ -53,8 +59,10 @@
 	alacritty
 	librewolf
 	fish
+	htop
      ];
    };
+  users.users.shado.initialPassword = "LoginPass";
   
   # Enable nonfree packages
   nixpkgs.config.allowUnfree = true;
